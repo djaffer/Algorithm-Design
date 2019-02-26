@@ -1,8 +1,5 @@
 # coding: utf-8
 
-'''
-Author: Danish Jaffer
-'''
 
 import math
 
@@ -73,14 +70,14 @@ def calc(vehicles):
 	maxDist = 0
 	maxDistDropToEnd = 0
 	maxDistDropKey = ""
-	maxDistBird = ""
+	maxDistVehicle = ""
 	for key in vehicles:
 		if "DROP" in vehicles[key]:
 			count += 1
 		totalDist = sum(vehicles[key]["DIST_RIDE"])
 		if maxDist < totalDist:
 			maxDist = totalDist
-			maxDistBird = key
+			maxDistVehicle = key
 
 		if maxDistDropToEnd < vehicles[key]["DIST_DROP"][-1]:
 			maxDistDropKey = key
@@ -88,15 +85,15 @@ def calc(vehicles):
 
 
 
-	return [count,(maxDistDropKey,maxDistDropToEnd),(maxDistBird,maxDist)]
+	return [count,(maxDistDropKey,maxDistDropToEnd),(maxDistVehicle,maxDist)]
 
 text = openTextFromFile("events.txt")
 vehicles = parseInfo(text)
 result = calc(vehicles)
 
-print("What is the total number of Bird vehicles dropped off in the simulation?")
+print("What is the total number of vehicles dropped off in the simulation?")
 print result[0],"\n"
-print("Which Bird ends up the farthest away from its drop location? What is the distance?")
-print "Bird: ",result[1][0]," - Dist: ",result[1][1],"\n"
-print("Which Bird has traveled the longest distance in total on all of its rides? How far is it?")
-print "Bird: ",result[2][0]," - Dist: ",result[2][1],"\n"
+print("Which vehicle ends up the farthest away from its drop location? What is the distance?")
+print "Vehicle: ",result[1][0]," - Dist: ",result[1][1],"\n"
+print("Which vehicle has traveled the longest distance in total on all of its rides? How far is it?")
+print "Vehicle: ",result[2][0]," - Dist: ",result[2][1],"\n"
